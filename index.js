@@ -67,27 +67,7 @@ client.on("message", async function (message) {
                 await message.reply(buscape);
             }
         }
-        else if (command === "findall") {
-            await message.reply('Ok! ⏳ Aguarde por favor ⏳');
-            let term = filterArgs(args)
-            let buscape = await modules.buscape(term)
-            if (!buscape.length) {
-                await message.reply(buscape.toString());
-            }
-            let zoom = await modules.zoom(term)
-            if (!zoom.length) {
-                await message.reply(zoom.toString());
-            }
-            if (zoom.length && buscape.length) {
-            let total = zoom.splice(0,2).concat(buscape.splice(0,1))
-            
-                let response = responseToCoolText(total)
-                await message.reply(response);
-            }
-            else {
-                await message.reply(errorMessage);
-            }
-        }
+       
         else {
             await message.reply('😢 OPS! Comando invalido! tente !!findzoom, findbuscape ou findall');
         }
