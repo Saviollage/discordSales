@@ -34,7 +34,7 @@ async function zoom(term) {
         return result;
     } catch (err) {
 
-        return []
+        return [new Item(err,0,0,0)]
     }
 }
 
