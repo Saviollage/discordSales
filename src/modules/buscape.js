@@ -1,7 +1,6 @@
 const URL = `https://www.buscape.com.br/search?q=`;
 const { Builder, By } = require('selenium-webdriver');
 const { Options } = require('selenium-webdriver/chrome');
-require('chromedriver');
 const Item = require("../model/item")
 
 async function buscape(term) {
@@ -12,7 +11,8 @@ async function buscape(term) {
         options.addArguments('headless')
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
-        var driver = await new Builder().forBrowser('chrome').setChromeOptions(options).
+        options.setChromeBinaryPath(process.env.GOOGLE_CHROME_PATH)
+        var driver = await new Builder().forBrowser(process.env.CHROMEDRIVER_PATH).setChromeOptions(options).
             build();
 
         let result = []
