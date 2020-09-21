@@ -45,26 +45,26 @@ client.on("message", async function (message) {
             await message.reply('Ok! Buscando ofertas no zoom ⏳ Aguarde por favor ⏳');
             let term = filterArgs(args)
             let zoom = await modules.zoom(term)
-            if (zoom.length > 0) {
+            if (zoom.length) {
                 // Utilizando o splice para nao exceder  limite de caracterres
                 let response = responseToCoolText(zoom.splice(0, 5))
                 await message.reply(response);
             }
             else {
-                await message.reply(errorMessage);
+                await message.reply(zoom);
             }
         }
         else if (command === "findbuscape") {
             await message.reply('Ok! Buscando ofertas no buscape ⏳ Aguarde por favor ⏳');
             let term = filterArgs(args)
             let buscape = await modules.buscape(term)
-            if (buscape.length > 0) {
+            if (buscape.length) {
                 // Utilizando o splice para nao exceder  limite de caracterres
                 let response = responseToCoolText(zoom.splice(0, 5))
                 await message.reply(response);
             }
             else {
-                await message.reply(errorMessage);
+                await message.reply(buscape);
             }
         }
         else if (command === "findall") {
@@ -72,9 +72,9 @@ client.on("message", async function (message) {
             let term = filterArgs(args)
             let buscape = await modules.buscape(term)
             let zoom = await modules.zoom(term)
-            // Utilizando o splice para nao exceder  limite de caracterres
+            if (zoom.length && buscape.length) {
             let total = zoom.splice(0,2).concat(buscape.splice(0,1))
-            if (total.length > 0) {
+            
                 let response = responseToCoolText(total)
                 await message.reply(response);
             }

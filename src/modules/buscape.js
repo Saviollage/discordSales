@@ -2,7 +2,7 @@ const URL = `https://www.buscape.com.br/search?q=`;
 const { Builder, By } = require('selenium-webdriver');
 const { Options } = require('selenium-webdriver/chrome');
 const Item = require("../model/item")
-
+require('chromedriver')
 async function buscape(term) {
 
     try {
@@ -38,7 +38,7 @@ async function buscape(term) {
         return result;
     } catch (err) {
 
-        return [new Item(err, 0, 0, 0)]
+        return err
     }
 }
 

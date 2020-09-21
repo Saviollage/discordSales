@@ -2,6 +2,7 @@ const URL = `https://www.zoom.com.br/search?q=`;
 const { Builder, By } = require('selenium-webdriver');
 const { Options } = require('selenium-webdriver/chrome');
 const Item = require("../model/item")
+require('chromedriver')
 async function zoom(term) {
 
     try {
@@ -36,7 +37,7 @@ async function zoom(term) {
         return result;
     } catch (err) {
 
-        return [new Item(err,0,0,0)]
+        return err
     }
 }
 
