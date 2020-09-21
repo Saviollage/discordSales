@@ -9,6 +9,8 @@ async function zoom(term) {
         let filteredUrl = URL + term.replace(" ", "%20")
         let options = new Options();
         options.addArguments('headless')
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-sandbox");
         var driver = await new Builder().forBrowser('chrome').setChromeOptions(options).
             build();
 
@@ -30,7 +32,7 @@ async function zoom(term) {
 
             result.push(new Item(text, price, "Zoom", "https://www.zoom.com.br/" + itemUrl))
         }
-        await driver.close();
+        await driver.quit();
         return result;
     } catch (err) {
 
