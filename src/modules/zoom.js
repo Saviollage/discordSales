@@ -1,19 +1,21 @@
 const URL = `https://www.zoom.com.br/search?q=`;
 const { Builder, By } = require('selenium-webdriver');
-const { Options } = require('selenium-webdriver/chrome');
+const chrome = require('selenium-webdriver/chrome');
 const Item = require("../model/item")
 require('chromedriver')
 async function zoom(term) {
 
     try {
         let filteredUrl = URL + term.replace(" ", "%20")
-        let options = new Options();
+        let options = new chrome.Options();
         options.addArguments('headless')
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
-        options.setChromeBinaryPath(process.env.GOOGLE_CHROME_PATH)
-        var driver = await new Builder().forBrowser(process.env.CHROMEDRIVER_PATH).setChromeOptions(options).
-            build();
+
+        var driver = await new Builder()
+            .forBrowser('chrome')
+            .setChromeOptions(options)
+            .build();
 
         let result = []
 

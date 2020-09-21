@@ -60,7 +60,7 @@ client.on("message", async function (message) {
             let buscape = await modules.buscape(term)
             if (buscape.length) {
                 // Utilizando o splice para nao exceder  limite de caracterres
-                let response = responseToCoolText(zoom.splice(0, 5))
+                let response = responseToCoolText(buscape.splice(0, 5))
                 await message.reply(response);
             }
             else {
@@ -71,7 +71,13 @@ client.on("message", async function (message) {
             await message.reply('Ok! ⏳ Aguarde por favor ⏳');
             let term = filterArgs(args)
             let buscape = await modules.buscape(term)
+            if (!buscape.length) {
+                await message.reply(buscape.toString());
+            }
             let zoom = await modules.zoom(term)
+            if (!zoom.length) {
+                await message.reply(zoom.toString());
+            }
             if (zoom.length && buscape.length) {
             let total = zoom.splice(0,2).concat(buscape.splice(0,1))
             
@@ -88,6 +94,6 @@ client.on("message", async function (message) {
 
     } catch (err) {
       
-        await message.reply('😢 OPS! Ocorreu um erro, tente novamente');
+        await message.reply('😢 OPS! Ocorreu um erro:' + err);
     }
 });
