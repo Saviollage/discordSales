@@ -69,7 +69,7 @@ client.on("message", async function (message) {
         }
        
         else {
-            await message.reply('😢 OPS! Comando invalido! tente !!findzoom, findbuscape ou findall');
+            await message.reply('😢 OPS! Comando invalido! tente !!findzoom, !!findbuscape');
         }
 
     } catch (err) {
