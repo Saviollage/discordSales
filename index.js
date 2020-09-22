@@ -47,8 +47,11 @@ client.on("message", async function (message) {
             let zoom = await modules.zoom(term)
             if (zoom.length) {
                 // Utilizando o splice para nao exceder  limite de caracterres
-                let response = responseToCoolText(zoom.splice(0, 5))
-                await message.reply(response);
+                if (zoom.length > 0) {
+                    let response = responseToCoolText(zoom.splice(0, 5))
+                    await message.reply(response);
+                }
+                else await message.reply(errorMessage);
             }
             else {
                 await message.reply(zoom);
@@ -60,8 +63,13 @@ client.on("message", async function (message) {
             let buscape = await modules.buscape(term)
             if (buscape.length) {
                 // Utilizando o splice para nao exceder  limite de caracterres
-                let response = responseToCoolText(buscape.splice(0, 5))
-                await message.reply(response);
+                if(buscape.length > 0)
+                {
+                    let response = responseToCoolText(buscape.splice(0, 5))
+                    await message.reply(response);
+                }
+                else await message.reply(errorMessage);
+
             }
             else {
                 await message.reply(buscape);
